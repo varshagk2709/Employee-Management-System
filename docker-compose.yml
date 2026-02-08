@@ -1,0 +1,18 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: employee-db
+    environment:
+      MYSQL_DATABASE: employee_db
+      MYSQL_ROOT_PASSWORD: rps@123
+    ports:
+      - "3306:3306"
+
+  app:
+    build: .
+    image: employee
+    container_name: employee
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
