@@ -1,0 +1,68 @@
+<div class="container mt-4" style="background:#fff;padding:20px;border-radius:8px;">
+  <h2 class="mb-3 text-center" style="font-weight:600;color:#2c3e50;">Employee Management</h2>
+
+  <div class="d-flex mb-3" style="gap:10px;flex-wrap:wrap;">
+    <input 
+      class="form-control me-2" 
+      placeholder="Search..." 
+      [(ngModel)]="keyword"
+      style="max-width:260px;border-radius:6px;"
+    >
+
+    <button 
+      class="btn btn-primary me-2" 
+      style="border-radius:6px;"
+      (click)="search()"
+    >
+      Search
+    </button>
+
+    <button 
+      class="btn btn-success ml-9" 
+      style="border-radius:6px;"
+      routerLink="/add"
+    >
+      Add Employee
+    </button>
+  </div>
+
+  <table class="table table-bordered table-hover" style="background:#fff;border-radius:6px;overflow:hidden;">
+    <thead class="table-dark">
+      <tr>
+        <th style="text-align:center;">Code</th>
+        <th style="text-align:center;">Name</th>
+        <th style="text-align:center;">Dept</th>
+        <th style="text-align:center;">Designation</th>
+        <th style="text-align:center;">Email</th>
+        <th style="text-align:center;">Phone</th>
+        <th style="text-align:center;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of employees" style="vertical-align:middle;">
+        <td style="text-align:center;">{{e.employeeCode}}</td>
+        <td>{{e.name}}</td>
+        <td>{{e.department}}</td>
+        <td>{{e.designation}}</td>
+        <td>{{e.email}}</td>
+        <td>{{e.phoneNumber}}</td>
+        <td style="text-align:center;">
+          <button 
+            class="btn btn-sm btn-warning me-1" 
+            style="border-radius:6px;min-width:60px;"
+            [routerLink]="['/edit', e.id]"
+          >
+            Edit
+          </button>
+          <button 
+            class="btn btn-sm btn-danger" 
+            style="border-radius:6px;min-width:60px;"
+            (click)="delete(e.id!)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
