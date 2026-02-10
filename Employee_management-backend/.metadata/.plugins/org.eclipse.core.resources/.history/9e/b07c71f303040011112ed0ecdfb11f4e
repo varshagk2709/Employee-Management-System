@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: employee-db
+    environment:
+      POSTGRES_DB: employee_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Teja@123
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    image: employee
+    container_name: employee
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
